@@ -4,7 +4,7 @@ body {
     rgb(43, 50, 178) 0%,
     rgb(20, 136, 204) 100%
   );
-  color: white;
+  color: aliceblue;
   font-family: arial, sans-serif;
 }
 
@@ -34,7 +34,7 @@ li {
   margin: 0;
   padding: 0;
 
-  color: white;
+  color: rgb(250, 240, 240);
   font-size: 16px;
   font-weight: 100;
   line-height: 19px;
