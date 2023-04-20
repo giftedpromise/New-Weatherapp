@@ -23,41 +23,34 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast(response) {
-  console.log(response.data.daily);
-  let forecast = response.data.daily;
+function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
 
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+
   let forecastHTML = `<div class="row">`;
-  let days = ["Thurs", "Fri", "Sat", "Sun", "Mon"];
   days.forEach(function (day) {
     forecastHTML =
       forecastHTML +
       `
-<div class="col-2">
-      <div class="weather-forecast-date">${day}</div>
-      <img
-        src="http://openweathermap.org/img/wn/50d@2x.png"
-        alt=""
-        width="42"
-      />
-      <div class="weather-forecast-temp">
-        <span class="weather-forecast-temp-max">18°</span>
-        <span class="weather-forecast-temp-min"> 12°</span>
+      <div class="col-2">
+        <div class="weather-forecast-date">${day}</div>
+        <img
+          src="http://openweathermap.org/img/wn/50d@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temp-max"> 18° </span>
+          <span class="weather-forecast-temp-min"> 12° </span>
+        </div>
       </div>
-    
-  </div>`;
+  `;
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-}
-
-function getForecast(name) {
-  console.log(name);
-  let apiKey = "o2b3t3ea0c2f4ee01156dffb489a3479";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${name}&key=${apiKey}`;
-  axios.get(apiUrl).then(displayForecast);
+  console.log(forecastHTML);
 }
 
 function showTemperature(response) {
@@ -81,8 +74,6 @@ function showTemperature(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-
-  getForecast(response.data.coord);
 }
 function search(city) {
   let apiKey = "3977acef4ffb0b3913a7e4cdd138f804";
