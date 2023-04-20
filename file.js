@@ -23,7 +23,9 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -51,6 +53,13 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(name) {
+  console.log(name);
+  let apiKey = "o2b3t3ea0c2f4ee01156dffb489a3479";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${name}&key=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showTemperature(response) {
   console.log(response.data);
   let cityElement = document.querySelector("#city");
@@ -72,6 +81,8 @@ function showTemperature(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+
+  getForecast(response.data.coord);
 }
 function search(city) {
   let apiKey = "3977acef4ffb0b3913a7e4cdd138f804";
